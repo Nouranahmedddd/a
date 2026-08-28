@@ -1,12 +1,49 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, computed, effect, signal } from '@angular/core';
+
+interface Product {
+  id: number;
+  name: string;
+  price: number;
+}
 
 @Component({
-  imports: [RouterOutlet],
   selector: 'app-root',
-  styleUrl: './app.css',
+  imports: [],
   templateUrl: './app.html',
+  styleUrl: './app.css'
 })
 export class App {
-  protected readonly title = signal('shopping-cart');
+  products: Product[] = [
+    { id: 1, name: 'Laptop', price: 25000 },
+    { id: 2, name: 'Phone', price: 15000 },
+    { id: 3, name: 'Headphones', price: 2500 },
+    { id: 4, name: 'Keyboard', price: 1200 },
+    { id: 5, name: 'Mouse', price: 800 }
+  ];
+
+  cart = signal<Product[]>([]);
+
+  totalPrice = computed(() =>
+    this.cart().reduce((sum, product) => sum + product.price, 0)
+  );
+
+  constructor() {
+    effect(() => {
+      console.log('Cart items count:', this.cart().length);
+    });
+  }
+
+  addToCart(product: Product) {
+    this.cart.update(items => [...items, product]);
+  }
+
+  removeFromCart(productId: number) {
+    this.cart.update(items =>
+      items.filter(product => product.id !== productId)
+    );
+  }
+
+  clearCart() {
+    this.cart.set([]);
+  }
 }
