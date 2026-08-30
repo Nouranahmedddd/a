@@ -6,7 +6,11 @@
   },
   "newProjectRoot": "projects",
   "projects": {
+<<<<<<< HEAD
     "shopping-cart": {
+=======
+    "team-manager": {
+>>>>>>> 5ad7b7b6cf0fd199b416ca07e6037399b4387d0c
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -56,10 +60,17 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
+<<<<<<< HEAD
               "buildTarget": "shopping-cart:build:production"
             },
             "development": {
               "buildTarget": "shopping-cart:build:development"
+=======
+              "buildTarget": "team-manager:build:production"
+            },
+            "development": {
+              "buildTarget": "team-manager:build:development"
+>>>>>>> 5ad7b7b6cf0fd199b416ca07e6037399b4387d0c
             }
           },
           "defaultConfiguration": "development"

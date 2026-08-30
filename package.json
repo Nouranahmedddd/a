@@ -1,5 +1,9 @@
 {
+<<<<<<< HEAD
   "name": "shopping-cart",
+=======
+  "name": "team-manager",
+>>>>>>> 5ad7b7b6cf0fd199b416ca07e6037399b4387d0c
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",

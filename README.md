@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 # ShoppingCart
+=======
+# TeamManager
+>>>>>>> 5ad7b7b6cf0fd199b416ca07e6037399b4387d0c
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.1.6.
 

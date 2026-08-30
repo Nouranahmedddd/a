@@ -1,0 +1,47 @@
+let customerName = prompt("Enter customer name");
+let category = prompt("Enter product category");
+let price = Number(prompt("Enter product price"));
+let quantity = Number(prompt("Enter quantity"));
+let coupon = prompt("Enter coupon code");
+let payment = prompt("Enter payment method");
+
+let subtotal = price * quantity;
+let discount = 0;
+
+if (category === "Electronics") {
+    discount = subtotal * 0.10;
+} else if (category === "Clothes") {
+    discount = subtotal * 0.15;
+} else if (category === "Food") {
+    discount = subtotal * 0.05;
+}
+
+if (coupon === "SAVE10") {
+    discount = discount + (subtotal * 0.10);
+}
+
+if (payment === "Visa") {
+    discount = discount + (subtotal * 0.05);
+}
+
+let finalPrice = subtotal - discount;
+
+let vat = finalPrice * 0.14;
+
+finalPrice = finalPrice + vat;
+
+if (finalPrice < 0) {
+    finalPrice = 0;
+}
+
+console.log("===== Invoice =====");
+console.log("Customer Name: " + customerName);
+console.log("Product Category: " + category);
+console.log("Price: " + price);
+console.log("Quantity: " + quantity);
+console.log("Subtotal: " + subtotal);
+console.log("Discount: " + discount);
+console.log("VAT: " + vat);
+console.log("Final Price: " + finalPrice);
+
+alert("Final Price = " + finalPrice);

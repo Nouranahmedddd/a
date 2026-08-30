@@ -1,0 +1,165 @@
+class Person {
+    #email;
+    #id;
+
+    constructor(name, email, id) {
+        this.name = name;
+        this.email = email;
+        this.id = id;
+    }
+
+    get email() {
+        return this.#email;
+    }
+
+    set email(value) {
+        if (value.includes("@")) {
+            this.#email = value;
+        } else {
+            console.log("Invalid email!");
+        }
+    }
+
+    get id() {
+        return this.#id;
+    }
+
+    set id(value) {
+        if (value > 0) {
+            this.#id = value;
+        } else {
+            console.log("Invalid ID!");
+        }
+    }
+
+    describeRole() {
+        console.log(`${this.name} is a school member.`);
+    }
+}
+
+class Principal extends Person {
+    constructor(name, email, id) {
+        super(name, email, id);
+        this.members = [];
+    }
+
+    addMember(member) {
+        this.members.push(member);
+        console.log(`${member.name} added successfully.`);
+    }
+
+    removeMember(id) {
+        this.members = this.members.filter(member => member.id !== id);
+        console.log(`Member with ID ${id} removed.`);
+    }
+
+    listMembers() {
+        console.log("\nSchool Members:");
+        this.members.forEach(member => {
+            console.log(`${member.name} - ${member.constructor.name}`);
+        });
+    }
+
+    describeRole() {
+        console.log(`${this.name} is the Principal and manages the school.`);
+    }
+}
+
+class Teacher extends Person {
+    constructor(name, email, id, subject) {
+        super(name, email, id);
+        this.subject = subject;
+        this.grades = [];
+    }
+
+    gradeStudent(studentName, grade) {
+        this.grades.push({
+            studentName,
+            grade
+        });
+
+        console.log(`${studentName} received grade ${grade}`);
+    }
+
+    listGradedStudents() {
+        console.log(`\nGrades by ${this.name}:`);
+
+        this.grades.forEach(item => {
+            console.log(`${item.studentName}: ${item.grade}`);
+        });
+    }
+
+    describeRole() {
+        console.log(`${this.name} teaches ${this.subject}.`);
+    }
+}
+
+class Student extends Person {
+    constructor(name, email, id) {
+        super(name, email, id);
+        this.subjects = [];
+    }
+
+    enrollSubject(subject) {
+        this.subjects.push(subject);
+        console.log(`${this.name} enrolled in ${subject}`);
+    }
+
+    viewSubjects() {
+        console.log(`\n${this.name}'s Subjects:`);
+
+        this.subjects.forEach(subject => {
+            console.log(subject);
+        });
+    }
+
+    describeRole() {
+        console.log(`${this.name} is a Student.`);
+    }
+}
+
+const principal = new Principal(
+    "Mr. Ahmed",
+    "principal@school.com",
+    1
+);
+
+const teacher = new Teacher(
+    "Ms. Sara",
+    "teacher@school.com",
+    2,
+    "Mathematics"
+);
+
+const student = new Student(
+    "Ali",
+    "student@school.com",
+    3
+);
+
+principal.addMember(teacher);
+principal.addMember(student);
+
+principal.listMembers();
+
+teacher.gradeStudent("Ali", 95);
+teacher.gradeStudent("Omar", 88);
+
+teacher.listGradedStudents();
+
+student.enrollSubject("Mathematics");
+student.enrollSubject("Physics");
+
+student.viewSubjects();
+
+const schoolMembers = [
+    principal,
+    teacher,
+    student
+];
+
+console.log("\nRoles:");
+
+schoolMembers.forEach(member => {
+    member.describeRole();
+});
